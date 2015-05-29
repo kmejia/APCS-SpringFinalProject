@@ -1,15 +1,17 @@
 import java.io.*;
-
-int numCellsCol = 1000;
+import java.util.*;
 int numCellsRow = 500;
+int numCellsCol = 1000;
 int cellSize = 50;
-Cell[][] grid = new Cell[numCellsRow][numCellsCol];
+Cell[][] grid = new Cell[numCellsCol][numCellsRow];
+ArrayList<Block> blocks = new ArrayList<Block>();
 void setup() {
   size(1000, 500);
-  background(#B40202);
+  background(1);
   fill(0);
-  triangle(18, 18, 18, 360, 81, 360);
+  //triangle(18, 18, 18, 360, 81, 360);
   makeGrid();
+  blocks.add(new Block());
 }
 void makeGrid() {
   for (int col = 0; col<grid.length; col++) {
@@ -18,15 +20,34 @@ void makeGrid() {
     }
   }
 }
-void draw() {
-  if(mouseX >0 && mouseY > 0 && mouseX < cellSize*grid.length && mouseY < cellSize*grid[0].length) {
-    int x = mouseX / cellSize;
-    int y = mouseY / cellSize;
-    grid[x][y].drawOutline();
-}
+void drawOutline() {
+  if (mouseX >0 && mouseY > 0 && mouseX < cellSize*grid.length && mouseY < cellSize*grid[0].length) {
+//    int x = mouseX / cellSize;
+//    int y = mouseY / cellSize;
+   grid[mouseX/cellSize][mouseY/cellSize].outlineMe();
+//background(#012489);
+  }
 }
 
+void draw() {
+ background(1);
+drawOutline();
+drawBlocks();
+//moveBlocks();
+}
+
+void drawBlocks(){
+  for (int i = 0 ; i < blocks.size();i++){
+    blocks.get(i).drawMe();
+  }
+}
+void moveBlocks(){
+    for (int i = 0 ; i < blocks.size();i++){
+    blocks.get(i).move();
+  }
+}
+  
 void mousePressed(){
-  background(#EAB915);
+ // background(#EAB915);
 }
 
