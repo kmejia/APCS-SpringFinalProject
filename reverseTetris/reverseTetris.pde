@@ -33,7 +33,11 @@ void draw() {
  background(1);
 drawOutline();
 drawBlocks();
-//moveBlocks();
+if (millis()%10==1){
+    blocks.add(new Block());
+}
+moveBlocks();
+
 }
 
 void drawBlocks(){
