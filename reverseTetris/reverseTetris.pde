@@ -1,6 +1,6 @@
 import java.io.*;
 import java.util.*;
-int numCellsRow = 500;
+int numCellsRow = 495;
 int numCellsCol = 1000;
 int cellSize = 50;
 Cell[][] grid = new Cell[numCellsCol][numCellsRow];
@@ -33,7 +33,7 @@ void draw() {
  background(1);
 drawOutline();
 drawBlocks();
-if (millis()%10==1){
+if (frameCount%60==0){
     blocks.add(new Block());
 }
 moveBlocks();

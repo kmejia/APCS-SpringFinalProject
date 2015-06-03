@@ -7,13 +7,13 @@ class Cell{
   }
   
   void outlineMe(){
-   noFill();
+    noFill();
     stroke(#00FF00);
     rectMode(CORNER);
     rect(col * cellSize, row * cellSize, cellSize, cellSize); 
     rectMode(CENTER);
     stroke(0);
-   }
   }
+}
 
 

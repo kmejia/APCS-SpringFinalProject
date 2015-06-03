@@ -7,10 +7,12 @@ int colour  = rnd.nextInt(5);
   Block(){
     yCor = 0;
     //xCor = (rnd.nextInt(numCellsCol) * cellSize) + (cellSize / 2);
-    xCor= 50*rnd.nextInt(20);  
+    xCor= 25+50*rnd.nextInt(20);  
 }
   void move(){
-    yCor += speed;
+    if (yCor <= numCellsRow-cellSize/2){
+      yCor += speed;
+    }
       drawMe();
   }
     void drawMe() {
