@@ -1,18 +1,23 @@
 import java.io.*;
 import java.util.*;
+
+Random rnd = new Random();
 int numCellsRow = 495;
 int numCellsCol = 1000;
 int cellSize = 50;
 Cell[][] grid = new Cell[numCellsCol][numCellsRow];
 ArrayList<Block> blocks = new ArrayList<Block>();
+int[] colors = {#FF0000, #00FF00, #0000FF};
+
 void setup() {
   size(1000, 500);
   background(1);
   fill(0);
   //triangle(18, 18, 18, 360, 81, 360);
   makeGrid();
-  blocks.add(new Block());
+  //blocks.add(new Block());
 }
+
 void makeGrid() {
   for (int col = 0; col<grid.length; col++) {
     for (int row = 0; row<grid[0].length; row++) {
@@ -20,6 +25,7 @@ void makeGrid() {
     }
   }
 }
+
 void drawOutline() {
   if (mouseX >0 && mouseY > 0 && mouseX < cellSize*grid.length && mouseY < cellSize*grid[0].length) {
 //    int x = mouseX / cellSize;
@@ -30,14 +36,13 @@ void drawOutline() {
 }
 
 void draw() {
- background(1);
-drawOutline();
-drawBlocks();
-if (frameCount%60==0){
-    blocks.add(new Block());
-}
-moveBlocks();
-
+  background(255);
+  moveBlocks();
+  drawOutline();
+  drawBlocks();
+  if (frameCount%60==0){
+    blocks.add(new Block(colors[rnd.nextInt(colors.length)]));
+  }
 }
 
 void drawBlocks(){
@@ -45,6 +50,7 @@ void drawBlocks(){
     blocks.get(i).drawMe();
   }
 }
+
 void moveBlocks(){
     for (int i = 0 ; i < blocks.size();i++){
     blocks.get(i).move();
