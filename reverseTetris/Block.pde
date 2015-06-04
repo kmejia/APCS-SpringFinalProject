@@ -10,6 +10,8 @@ class Block{
   Block up;
   Block down;
   
+  boolean moving = true;
+  
   Block(int colour){
    xCor= 25+50*rnd.nextInt(20);
    yCor = 0;
@@ -29,8 +31,10 @@ class Block{
   }
   
   void move(){
+    if( moving){
     if (yCor <= numCellsRow-cellSize/2){
       yCor += speed;
+    }
     }
       drawMe();
   }

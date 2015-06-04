@@ -7,7 +7,7 @@ int numCellsCol = 1000;
 int cellSize = 50;
 Cell[][] grid = new Cell[numCellsCol][numCellsRow];
 ArrayList<Block> blocks = new ArrayList<Block>();
-int[] colors = {#FF0000, #00FF00, #0000FF};
+int[] colors = {#FF0000, #00FF00, #0000FF, #F6FF00};
 
 void setup() {
   size(1000, 500);
