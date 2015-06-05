@@ -32,7 +32,8 @@ class Block{
   
   void move(){
     if( moving){
-    if (yCor <= numCellsRow-cellSize/2){
+    //if (yCor <= numCellsRow-cellSize/2){
+    if(yCor<=(495-25)){
       yCor += speed;
     }
     }

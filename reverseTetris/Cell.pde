@@ -5,7 +5,7 @@ class Cell{
     col = a;
     row = b; 
   }
-  
+  boolean taken = false;
   void outlineMe(){
     noFill();
     stroke(#00FF00);

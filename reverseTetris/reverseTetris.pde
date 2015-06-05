@@ -43,6 +43,9 @@ void draw() {
   if (frameCount%60==0){
     blocks.add(new Block(colors[rnd.nextInt(colors.length)]));
   }
+  System.out.println(mouseX);
+  System.out.println(mouseY);
+
 }
 
 void drawBlocks(){
@@ -50,14 +53,28 @@ void drawBlocks(){
     blocks.get(i).drawMe();
   }
 }
-
+//void cancel(){
+// blocks.get(4).moving = false;
+//}
 void moveBlocks(){
-    for (int i = 0 ; i < blocks.size();i++){
-    blocks.get(i).move();
-  }
-}
-  
+    for (int i = 0 ; i < blocks.size();i++){ 
+Block temp = blocks.get(i);
+if (!findBelow(temp)){
+ 
+temp.move();}
+    }
+    }
+
+// boolean findBelow(Block b){
+//   int Y = (int)b.yCor;
+//     for (int i = 0 ; i < blocks.size();i++){
+//       if Y + 25 = (int)blocks.get(i).yCor{ 
+//         return true;
+//       }
+//     }return false
+// }
+//   
 void mousePressed(){
- // background(#EAB915);
+ 
 }
 
