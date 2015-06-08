@@ -3,7 +3,7 @@ import java.util.*;
 class Block{
   Random rnd = new Random();
   float xCor, yCor;
-  float speed = 5;
+  float speed = 25;
   int fillColor;
   Block left;
   Block right;

@@ -2,12 +2,15 @@ import java.io.*;
 import java.util.*;
 
 Random rnd = new Random();
-int numCellsRow = 500;
+int numCellsRow = 495;
 int numCellsCol = 1000;
 int cellSize = 50;
+boolean lose = false;
 Cell[][] grid = new Cell[numCellsCol][numCellsRow];
 ArrayList<Block> blocks = new ArrayList<Block>();
-int[] colors = {#FF0000, #00FF00, #0000FF, #F6FF00};
+int[] colors = {
+  #FF0000, #00FF00, #0000FF, #F6FF00
+};
 
 void setup() {
   size(1000, 500);
@@ -28,18 +31,18 @@ void makeGrid() {
 
 void drawOutline() {
   if (mouseX >=0 && mouseY >= 0 && mouseX <= cellSize*grid.length && mouseY <= cellSize*grid[0].length) {
-   grid[mouseX/cellSize][mouseY/cellSize].outlineMe();
+    grid[mouseX/cellSize][mouseY/cellSize].outlineMe();
   }
 }
 
 void draw() {
-  if (!lose){
+  if (!lose) {
     background(0);
     lost();
     moveBlocks();
     drawOutline();
     drawBlocks();
-    if (frameCount%60==0){
+    if (frameCount%60==0) {
       blocks.add(new Block(colors[rnd.nextInt(colors.length)]));
     }
     //System.out.println(mouseX);
@@ -47,39 +50,43 @@ void draw() {
   }
 }
 
-void drawBlocks(){
-  for (int i = 0 ; i < blocks.size();i++){
+void drawBlocks() {
+  for (int i = 0; i < blocks.size (); i++) {
     blocks.get(i).drawMe();
   }
 }
 //void cancel(){
 // blocks.get(4).moving = false;
 //}
-void moveBlocks(){
-    for (int n = 0 ; n < blocks.size();n++){ 
-      Block temp = blocks.get(n);
-        if (!findBelow(temp)){
-        temp.move();
+void moveBlocks() {
+  for (int n = 0; n < blocks.size (); n++) { 
+    Block temp = blocks.get(n);
+    if (!findBelow(temp)) {
+      temp.move();
     }
   }
 }
 
-boolean findBelow(Block b){
+boolean findBelow(Block b) {
   int X = (int)b.xCor;
   int Y = (int)b.yCor;
-  for (int r = 0 ; r < blocks.size();r++){
-    if (X == (int)blocks.get(r).xCor && Y + cellSize == (int)blocks.get(r).yCor){ 
+  for (int r = 0; r < blocks.size (); r++) {
+    if (X == (int)blocks.get(r).xCor && Y + cellSize == (int)blocks.get(r).yCor) { 
       return true;
     }
-   }
-   return false;
- }
-   
-boolean lost(){
-  //if
-}  
-   
-void mousePressed(){
- 
+  }
+  return false;
+}
+
+//boolean lost() {
+//  for (int n = 0; n < blocks.size (); n++) {
+//    if (blocks.get(n).yCor == 0) {
+//      lose = true;
+//    }
+//  }
+//  return lose;
+//}
+
+void mousePressed() {
 }
 
