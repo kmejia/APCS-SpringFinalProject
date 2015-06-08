@@ -25,6 +25,7 @@ class Block{
    fillColor = colour;
   }
    
+   
   void drawMe() {
     fill(fillColor);
     rect(xCor, yCor, cellSize, cellSize);
@@ -39,7 +40,10 @@ class Block{
     }
       drawMe();
   }
- 
+ void stop(){
+   moving = false;
+   
+ }
   Block getLeft(){
     return left; 
   }

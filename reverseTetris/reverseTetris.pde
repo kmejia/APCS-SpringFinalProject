@@ -59,11 +59,12 @@ void drawBlocks(){
 void moveBlocks(){
     for (int i = 0 ; i < blocks.size();i++){ 
 Block temp = blocks.get(i);
-if (!findBelow(temp)){
- 
+//for (int i = 0 ; i < blocks.size();i++){ 
+//if (!findBelow(temp)){
+// 
 temp.move();}
     }
-    }
+//   }
 
 // boolean findBelow(Block b){
 //   int Y = (int)b.yCor;
