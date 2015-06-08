@@ -8,7 +8,7 @@ class Cell{
   boolean taken = false;
   void outlineMe(){
     noFill();
-    stroke(#00FF00);
+    stroke(#FFFFFF);
     rectMode(CORNER);
     rect(col * cellSize, row * cellSize, cellSize, cellSize); 
     rectMode(CENTER);
