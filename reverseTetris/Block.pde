@@ -9,7 +9,7 @@ class Block{
   Block right;
   Block up;
   Block down;
-  
+  Block next;
   boolean moving = true;
   
   Block(int colour){
@@ -44,6 +44,11 @@ class Block{
    moving = false;
    
  }
+ void setNext(Block n){
+   next = n;}
+   Block getNext(){
+     return n;
+   }
   Block getLeft(){
     return left; 
   }

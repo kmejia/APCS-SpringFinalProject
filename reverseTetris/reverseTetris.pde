@@ -8,6 +8,7 @@ int cellSize = 50;
 boolean lose = false;
 Cell[][] grid = new Cell[numCellsCol][numCellsRow];
 ArrayList<Block> blocks = new ArrayList<Block>();
+Object[] bl = new Object[20];//the linked
 int[] colors = {
   #FF0000, #00FF00, #0000FF, #F6FF00
 };
@@ -18,6 +19,11 @@ void setup() {
   fill(0);
   //triangle(18, 18, 18, 360, 81, 360);
   makeGrid();
+  for (int i = 0; i<bl.length; i++){
+   bl[i] = new LinkedList<Block>(); 
+  
+   System.out.println(bl[i]);
+  }
   //blocks.add(new Block());
 }
 
@@ -38,12 +44,14 @@ void drawOutline() {
 void draw() {
   if (!lose) {
     background(0);
-    lost();
+    //lost();
     moveBlocks();
     drawOutline();
     drawBlocks();
     if (frameCount%60==0) {
-      blocks.add(new Block(colors[rnd.nextInt(colors.length)]));
+      Block temp = new Block(colors[rnd.nextInt(colors.length)]);
+      bl[1].add(temp);
+     // blocks.add(new Block(colors[rnd.nextInt(colors.length)]));
     }
     //System.out.println(mouseX);
     //System.out.println(mouseY);
@@ -63,6 +71,14 @@ void moveBlocks() {
     Block temp = blocks.get(n);
     if (!findBelow(temp)) {
       temp.move();
+    } else {
+      Block temp2;
+      for (int r = 0; r < blocks.size (); r++) {
+        if (X == (int)blocks.get(r).xCor && Y + cellSize == (int)blocks.get(r).yCor) {
+          temp2 = blocks.get(r);
+        }
+      }
+    //  temp.setDown(temp2);
     }
   }
 }
