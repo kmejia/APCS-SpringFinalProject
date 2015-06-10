@@ -8,7 +8,7 @@ int cellSize = 50;
 boolean lose = false;
 Cell[][] grid = new Cell[numCellsCol][numCellsRow];
 ArrayList<Block> blocks = new ArrayList<Block>();
-Object[] bl = new Object[20];//the linked
+Block[] bl = new Block[20];//the linked
 int[] colors = {
   #FF0000, #00FF00, #0000FF, #F6FF00
 };
@@ -19,11 +19,11 @@ void setup() {
   fill(0);
   //triangle(18, 18, 18, 360, 81, 360);
   makeGrid();
-  for (int i = 0; i<bl.length; i++){
-   bl[i] = new LinkedList<Block>(); 
-  
-   System.out.println(bl[i]);
-  }
+//  for (int i = 0; i<bl.length; i++) {
+//    bl[i] = new Block(); //null as the bottom
+//
+//    System.out.println(bl[i]);
+  //}
   //blocks.add(new Block());
 }
 
@@ -50,26 +50,34 @@ void draw() {
     drawBlocks();
     if (frameCount%60==0) {
       Block temp = new Block(colors[rnd.nextInt(colors.length)]);
-      bl[1].add(temp);
-     // blocks.add(new Block(colors[rnd.nextInt(colors.length)]));
+      System.out.println((temp.xCor-25)/50);
+      if (bl[((int)temp.xCor-25)/50]!=null) {
+        bl[((int)temp.xCor-25)/50].setNext(temp);
+      } else { 
+        bl[((int)temp.xCor-25)/50] = temp;
+      }
+      // blocks.add(new Block(colors[rnd.nextInt(colors.length)]));
     }
     //System.out.println(mouseX);
     //System.out.println(mouseY);
   }
+  //System.out.println(bl);
 }
 
 void drawBlocks() {
-  for (int i = 0; i < blocks.size (); i++) {
-    blocks.get(i).drawMe();
+  for (int i = 0; i < bl.length; i++) {
+    for (Block temp = bl[i]; temp!= null; temp = temp.getNext ()) {
+      bl[i].drawMe();
+    }
   }
 }
 //void cancel(){
 // blocks.get(4).moving = false;
 //}
 void moveBlocks() {
-  for (int n = 0; n < blocks.size (); n++) { 
-    Block temp = blocks.get(n);
-    if (!findBelow(temp)) {
+  for (int i = 0; i < bl.length; i++) { 
+    for (Block temp = bl[i]; temp != null; temp = temp.getNext()){
+    if (!findBelow(temp, i)) {
       temp.move();
     } else {
       Block temp2;
@@ -78,15 +86,17 @@ void moveBlocks() {
           temp2 = blocks.get(r);
         }
       }
-    //  temp.setDown(temp2);
+      //  temp.setDown(temp2);
+    }
     }
   }
 }
 
-boolean findBelow(Block b) {
+boolean findBelow(Block b, int index) {
   int X = (int)b.xCor;
   int Y = (int)b.yCor;
-  for (int r = 0; r < blocks.size (); r++) {
+  int r = 0;
+  for (Block temp = bl[index]; r < bl[index].length; r++) {
     if (X == (int)blocks.get(r).xCor && Y + cellSize == (int)blocks.get(r).yCor) { 
       return true;
     }

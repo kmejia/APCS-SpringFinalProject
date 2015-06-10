@@ -11,7 +11,7 @@ class Block{
   Block down;
   Block next;
   boolean moving = true;
-  
+  //color = data
   Block(int colour){
    xCor= 25+50*rnd.nextInt(20);
    yCor = 0;
@@ -24,7 +24,9 @@ class Block{
    yCor = y; 
    fillColor = colour;
   }
-   
+   Block(){
+    fillColor = 1;
+   }
    
   void drawMe() {
     fill(fillColor);
@@ -46,8 +48,9 @@ class Block{
  }
  void setNext(Block n){
    next = n;}
+   
    Block getNext(){
-     return n;
+     return next;
    }
   Block getLeft(){
     return left; 
