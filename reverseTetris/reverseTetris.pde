@@ -19,10 +19,10 @@ void setup() {
   fill(0);
   //triangle(18, 18, 18, 360, 81, 360);
   makeGrid();
-//  for (int i = 0; i<bl.length; i++) {
-//    bl[i] = new Block(); //null as the bottom
-//
-//    System.out.println(bl[i]);
+  //  for (int i = 0; i<bl.length; i++) {
+  //    bl[i] = new Block(); //null as the bottom
+  //
+  //    System.out.println(bl[i]);
   //}
   //blocks.add(new Block());
 }
@@ -53,6 +53,7 @@ void draw() {
       System.out.println((temp.xCor-25)/50);
       if (bl[((int)temp.xCor-25)/50]!=null) {
         bl[((int)temp.xCor-25)/50].setNext(temp);
+        System.out.println("this be working");
       } else { 
         bl[((int)temp.xCor-25)/50] = temp;
       }
@@ -76,18 +77,22 @@ void drawBlocks() {
 //}
 void moveBlocks() {
   for (int i = 0; i < bl.length; i++) { 
-    for (Block temp = bl[i]; temp != null; temp = temp.getNext()){
-    if (!findBelow(temp, i)) {
-      temp.move();
-    } else {
-      Block temp2;
-      for (int r = 0; r < blocks.size (); r++) {
-        if (X == (int)blocks.get(r).xCor && Y + cellSize == (int)blocks.get(r).yCor) {
-          temp2 = blocks.get(r);
-        }
+    Block piggyback = null;
+    for (Block temp = bl[i]; temp != null; temp = temp.getNext ()) {
+      piggyback = temp;
+      if (!findBelow(temp, i)) {
+        temp.move();
+      } else {
+        piggyback.setNext(temp);
+        temp.setNext(null);
+        //      for (int r = 0; r < blocks.size (); r++) {
+        //        if (X == (int)blocks.get(r).xCor && Y + cellSize == (int)blocks.get(r).yCor) {
+        //          temp2 = blocks.get(r);
+        //        }
+        //      }
+        //      //  temp.setDown(temp2);\
+        
       }
-      //  temp.setDown(temp2);
-    }
     }
   }
 }
@@ -95,9 +100,11 @@ void moveBlocks() {
 boolean findBelow(Block b, int index) {
   int X = (int)b.xCor;
   int Y = (int)b.yCor;
-  int r = 0;
-  for (Block temp = bl[index]; r < bl[index].length; r++) {
-    if (X == (int)blocks.get(r).xCor && Y + cellSize == (int)blocks.get(r).yCor) { 
+  // int r = 0;
+  for (Block temp = bl[index]; temp !=null; temp = temp.getNext ()) {
+    if ( (int)Y + cellSize == (int)temp.yCor) { 
+      // temp.setNext(b);
+      System.out.println("working");
       return true;
     }
   }
