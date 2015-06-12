@@ -52,7 +52,7 @@ void draw() {
       Block temp = new Block(colors[rnd.nextInt(colors.length)]);
       System.out.println((temp.xCor-25)/50);
       if (bl[((int)temp.xCor-25)/50]!=null) {
-        bl[((int)temp.xCor-25)/50].setNext(temp);
+        temp.setNext(bl[((int)temp.xCor-25)/50]);
         System.out.println("this be working");
       } else { 
         bl[((int)temp.xCor-25)/50] = temp;
@@ -77,14 +77,14 @@ void drawBlocks() {
 //}
 void moveBlocks() {
   for (int i = 0; i < bl.length; i++) { 
-    Block piggyback = null;
-    for (Block temp = bl[i]; temp != null; temp = temp.getNext ()) {
+    Block piggyback = bl[((int)temp.xCor-25)/50].;
+    for (Block temp = bl[i]; temp != null; temp = temp.getNext()) {
       piggyback = temp;
-      if (!findBelow(temp, i)) {
-        temp.move();
-      } else {
-        piggyback.setNext(temp);
+      if (findBelow(temp, i)) {
         temp.setNext(null);
+        temp.drawMe();
+      } else {
+        temp.move();
         //      for (int r = 0; r < blocks.size (); r++) {
         //        if (X == (int)blocks.get(r).xCor && Y + cellSize == (int)blocks.get(r).yCor) {
         //          temp2 = blocks.get(r);
