@@ -7,7 +7,7 @@ int numCellsCol = 1000;
 int cellSize = 50;
 boolean lose = false;
 Cell[][] grid = new Cell[numCellsCol][numCellsRow];
-ArrayList<Block> blocks = new ArrayList<Block>();
+//ArrayList<Block> blocks = new ArrayList<Block>();
 Block[] bl = new Block[20];//the linked lists
 int score =0;
 int[] colors = {
@@ -20,12 +20,12 @@ void setup() {
   fill(0);
   //triangle(18, 18, 18, 360, 81, 360);
   makeGrid();
-  /*the new part -ish for setup purposes*/
+  /*the new part -ish for setup purposes
    for (int i = 0; i<bl.length; i++) {
-      bl[i] = new Block((i*50) +25,475,#0000FF); //the bottom row
-      bl[i].setNext(new Block((i*50) +25 ,(int)(bl[i].yCor - 50) ,  #F6FF00));
-      //System.out.println(bl[i]);
-  }
+   bl[i] = new Block((i*50) +25,475,#0000FF); //the bottom row
+   bl[i].setNext(new Block((i*50) +25 ,(int)(bl[i].yCor - 50) ,  #F6FF00));
+   //System.out.println(bl[i]);
+   } */
   //blocks.add(new Block());
 }
 
@@ -44,29 +44,27 @@ void drawOutline() {
 }
 
 void draw() {
-  System.out.println(mouseY);
+  //System.out.println(mouseY);
   if (!lose) {
     background(0);
     //lost();
-    //moveBlocks();
-    drawOutline();
     drawBlocks();
-//    if (frameCount%60==0) {
-//      Block temp = new Block(colors[rnd.nextInt(colors.length)]);
-//      System.out.println((temp.xCor-25)/50);
-//      if (bl[((int)temp.xCor-25)/50]!=null) {
-//        Block end = bl[((int)temp.xCor-25)/50];
-//        while (end.getNext() != null) {
-//          end = end.getNext();
-//        }
-//        end.setNext(temp);
-//      }
-//      //System.out.println("this be working");
-//      else { 
-//        bl[((int)temp.xCor-25)/50] = temp;
-//      }
+    moveBlocks();
+    drawOutline();
+    if (frameCount%60==0) {
+      Block temp = new Block(colors[rnd.nextInt(colors.length)]);
+      //System.out.println((temp.xCor-25)/50);
+      if (bl[((int)temp.xCor-25)/50]!=null) {
+        Block end = bl[((int)temp.xCor-25)/50];
+        while (end.getNext () != null) {
+          end = end.getNext();
+        }
+        end.setNext(temp);
+      } else { 
+        bl[((int)temp.xCor-25)/50] = temp;
+      }
       // blocks.add(new Block(colors[rnd.nextInt(colors.length)]));
-   // }
+    }
     //System.out.println(mouseX);
     //System.out.println(mouseY);
   }
@@ -77,7 +75,7 @@ void draw() {
 void drawBlocks() {
   for (int i = 0; i < bl.length; i++) {
     for (Block temp = bl[i]; temp!= null; temp = temp.getNext ()) {
-     //System.out.println("got here");
+      //System.out.println("got here");
       bl[i].drawMe();
     }
   }
@@ -85,42 +83,52 @@ void drawBlocks() {
 //void cancel(){
 // blocks.get(4).moving = false;
 //}
+
+//void moveBlocks() {
+//  for (int i = 0; i < bl.length; i++) { 
+//    for (Block temp = bl[i]; temp != null; temp = temp.getNext ()) {
+//      Block front = bl[((int)temp.xCor-25)/50];
+//      Block end = front;
+//      while (end.getNext()!= null) {
+//        end = end.getNext();
+//      }
+//      if (findBelow(temp, end)) {
+//        end.setNext(temp);
+//        temp.drawMe();
+//      } else {
+//        temp.move();
+//        //      for (int r = 0; r < blocks.size (); r++) {
+//        //        if (X == (int)blocks.get(r).xCor && Y + cellSize == (int)blocks.get(r).yCor) {
+//        //          temp2 = blocks.get(r);
+//        //        }
+//        //      }
+//        //      //  temp.setDown(temp2);\
+//      }
+//    }
+//  }
+//}
+
 void moveBlocks() {
-  for (int i = 0; i < bl.length; i++) { 
+  for (int i = 0; i < bl.length; i++) {
     for (Block temp = bl[i]; temp != null; temp = temp.getNext ()) {
       Block front = bl[((int)temp.xCor-25)/50];
       Block end = front;
-      while (end.getNext()!= null) {
+      while (end.getNext () != null) {
         end = end.getNext();
       }
-      if (findBelow(temp, end)) {
-        System.out.println("findBelow fail");
-        end.setNext(temp);
-        temp.drawMe();
-      } else {
+      if (!findBelow(temp, end)) {
         temp.move();
-        //      for (int r = 0; r < blocks.size (); r++) {
-        //        if (X == (int)blocks.get(r).xCor && Y + cellSize == (int)blocks.get(r).yCor) {
-        //          temp2 = blocks.get(r);
-        //        }
-        //      }
-        //      //  temp.setDown(temp2);\
       }
     }
   }
 }
 
-
 boolean findBelow(Block b, Block end) {
   int X = (int)b.xCor;
   int Y = (int)b.yCor;
-  // int r = 0;
-    if ( (int)Y + cellSize == (int)end.yCor) { 
-      // temp.setNext(b);
-      System.out.println("working");
-      return true;
-    }
-  
+  if (bl[(X-25)/50] != null && Y+50 == (int)end.yCor) {
+    return true;
+  }
   return false;
 }
 
@@ -137,8 +145,9 @@ void mousePressed() {
   lose = true;//placeholder
 }
 
-void endSequence(){
+void endSequence() {
   noLoop();
-background(1);
-System.out.println("score" +score);
+  background(1);
+  //System.out.println("score" +score);
 } 
+
