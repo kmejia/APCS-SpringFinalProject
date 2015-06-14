@@ -78,9 +78,16 @@ void draw() {
     //lost();
     //    test.drawMe();
     //    test.getNext().drawMe();
+    /*uncomment below to see what happens under update 
+    
+    */
+  //  update();
     drawBlocks();
     moveBlocks();
     //   drawOutline();
+    if (frameCount%60==0) {
+      movers.add(new Block(0, 0, #FFFFFF));
+    }
     //    if (frameCount%60==0) {
     //      Block temp = new Block(colors[rnd.nextInt(colors.length)],counter);
     //      //counter++;
@@ -104,7 +111,20 @@ void draw() {
     //System.out.println(bl[0]);
   }
 }
-
+void update() {
+  for (int i = 0; i<movers.size(); i++) {
+    Block temp = movers.get(i);
+    int j= (int)temp.xCor / 50;//the converted xCor
+    Block list = bl[j];
+    while(list!= null){
+      if ((int)list.yCor ==(int)temp.yCor) {
+        movers.remove(temp);
+        list.setNext(temp);
+      }
+      list = list.getNext();
+    }
+  }
+}
 void drawBlocks() {
   for (int i = 0; i<bl.length; i++) {
     for (Block temp=bl[i]; temp!=null; temp = temp.getNext ()) {
@@ -114,8 +134,9 @@ void drawBlocks() {
 }
 void moveBlocks() {
   for (int i = 0; i<movers.size (); i++) {
-    movers.get(i).drawMe();
-    movers.get(i).yCor +=5;
+    Block temp = movers.get(i);
+    temp.drawMe();
+    temp.move();
   }
 }
 //int i = 1;
