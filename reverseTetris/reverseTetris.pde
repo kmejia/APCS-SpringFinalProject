@@ -79,13 +79,13 @@ void draw() {
     //    test.drawMe();
     //    test.getNext().drawMe();
     /*uncomment below to see what happens under update 
-    
-    */
-  //  update();
+     
+     */
+      update();
     drawBlocks();
     moveBlocks();
     //   drawOutline();
-    if (frameCount%60==0) {
+    if (frameCount%120==0) {
       movers.add(new Block(0, 0, #FFFFFF));
     }
     //    if (frameCount%60==0) {
@@ -112,19 +112,22 @@ void draw() {
   }
 }
 void update() {
-  for (int i = 0; i<movers.size(); i++) {
+  for (int i = 0; i<movers.size (); i++) {
     Block temp = movers.get(i);
     int j= (int)temp.xCor / 50;//the converted xCor
     Block list = bl[j];
-    while(list!= null){
-      if ((int)list.yCor ==(int)temp.yCor) {
-        movers.remove(temp);
-        list.setNext(temp);
-      }
+    while (list.getNext ()!= null) {
       list = list.getNext();
+    }
+    //at this point list is the last node
+    //now i want to check if it's right below temp, which is moving
+    if ((int)list.yCor - 50 ==(int)temp.yCor) {
+      list.setNext(temp);
+      movers.remove(temp);
     }
   }
 }
+
 void drawBlocks() {
   for (int i = 0; i<bl.length; i++) {
     for (Block temp=bl[i]; temp!=null; temp = temp.getNext ()) {
