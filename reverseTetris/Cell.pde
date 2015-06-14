@@ -11,7 +11,7 @@ class Cell{
     stroke(#FFFFFF);
     rectMode(CORNER);
     rect(col * cellSize, row * cellSize, cellSize, cellSize); 
-    rectMode(CENTER);
+    //rectMode(CENTER);
     stroke(0);
   }
 }

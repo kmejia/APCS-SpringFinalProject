@@ -73,7 +73,7 @@ void drawOutline() {
 
 void draw() {
   //System.out.println(mouseY);
-  if (!lose) {
+  if (!lost()) {
     background(0);
     //lost();
     //    test.drawMe();
@@ -81,10 +81,10 @@ void draw() {
     /*uncomment below to see what happens under update 
      
      */
-      update();
+    update();
     drawBlocks();
     moveBlocks();
-    //   drawOutline();
+    drawOutline();
     if (frameCount%120==0) {
       movers.add(new Block(0, 0, #FFFFFF));
     }
@@ -106,11 +106,12 @@ void draw() {
     //    }
     //    //System.out.println(mouseX);
     //    //System.out.println(mouseY);
-    //  }
-    //else {endSequence();}
-    //System.out.println(bl[0]);
+  } else {
+    endSequence();
   }
+  //System.out.println(bl[0]);
 }
+
 void update() {
   for (int i = 0; i<movers.size (); i++) {
     Block temp = movers.get(i);
@@ -210,14 +211,16 @@ void moveBlocks() {
 //  return false;
 //}
 
-//boolean lost() {
-//  for (int n = 0; n < blocks.size (); n++) {
-//    if (blocks.get(n).yCor == 0) {
-//      lose = true;
-//    }
-//  }
-//  return lose;
-//}
+boolean lost() {
+  for (int n = 0; n < bl.length; n++) {
+    for (Block temp = bl[n]; temp != null; temp = temp.getNext ()) {
+      if ((int)temp.yCor < cellSize) {
+        lose = true;
+      }
+    }
+  }
+  return lose;
+}
 
 void mousePressed() {
   lose = true;//placeholder
