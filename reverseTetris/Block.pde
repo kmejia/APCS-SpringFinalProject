@@ -13,15 +13,25 @@ class Block {
   int counter;
   boolean moving = true;
   //color = data
+  public String toString() {
+   String ans = "" ;
+    return ans  + xCor+"," + yCor;
+  }
   Block(int colour, int count) {
     //xCor= 25+50*rnd.nextInt(20);
     xCor = 25;
     yCor = 0;
     fillColor = colour;
     counter = count;
+    next=null;
     //xCor = (rnd.nextInt(numCellsCol) * cellSize) + (cellSize / 2);
   }
-
+ Block(int x, int y, int colour) {
+    xCor = x;
+    yCor = y; 
+    fillColor = colour;
+    next=null;
+  }
   Block(int x, int y, int colour, int count) {
     xCor = x;
     yCor = y; 
@@ -38,23 +48,19 @@ class Block {
   }
 
   void move() {
-    if (moving) {
-      //if (yCor <= numCellsRow-cellSize/2);
-      if (/*yCor<=(numCellsRow-25)*/ !findBelow()) {
+    
         yCor += speed;
-      }
-    }
-    drawMe();
   }
 
-  boolean findBelow() {
-    if (down.counter != counter) {
-      if ((int)yCor >= (int)down.yCor+cellSize) {
-        return true;
-      }
-    }
-    return false;
-  }
+}
+//  boolean findBelow() {
+//    if (down.counter != counter) {
+//      if ((int)yCor >= (int)down.yCor+cellSize) {
+//        return true;
+//      }
+//    }
+//    return false;
+//  }
 
   void setNext(Block n) {
     next = n;
@@ -79,12 +85,12 @@ class Block {
     return up;
   }
 
-  Block getDown() {
+  Block getBelow() {
     return down;
   }
   
-  void setDown(Block b){
+  void setBelow(Block b){
    down = b; 
   }
-}
+
 
