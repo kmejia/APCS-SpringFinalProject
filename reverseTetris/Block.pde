@@ -14,7 +14,7 @@ class Block {
   boolean moving = true;
   //color = data
   public String toString() {
-   String ans = "" ;
+    String ans = "" ;
     return ans  + xCor+"," + yCor;
   }
   Block(int colour, int count) {
@@ -26,7 +26,7 @@ class Block {
     next=null;
     //xCor = (rnd.nextInt(numCellsCol) * cellSize) + (cellSize / 2);
   }
- Block(int x, int y, int colour) {
+  Block(int x, int y, int colour) {
     xCor = x;
     yCor = y; 
     fillColor = colour;
@@ -48,19 +48,18 @@ class Block {
   }
 
   void move() {
-    
-        yCor += speed;
+
+    yCor += speed;
   }
 
-}
-//  boolean findBelow() {
-//    if (down.counter != counter) {
-//      if ((int)yCor >= (int)down.yCor+cellSize) {
-//        return true;
-//      }
-//    }
-//    return false;
-//  }
+  //  boolean findBelow() {
+  //    if (down.counter != counter) {
+  //      if ((int)yCor >= (int)down.yCor+cellSize) {
+  //        return true;
+  //      }
+  //    }
+  //    return false;
+  //  }
 
   void setNext(Block n) {
     next = n;
@@ -88,9 +87,8 @@ class Block {
   Block getBelow() {
     return down;
   }
-  
-  void setBelow(Block b){
-   down = b; 
+
+  void setBelow(Block b) {
+    down = b;
   }
-
-
+}

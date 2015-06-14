@@ -29,30 +29,30 @@ void setup() {
     //d.drawMe();
     bl[i].setNext(new Block(50 *i, (int)(bl[i].yCor) - 50, #FFFFFF));
     //bl[i].getNext().drawMe();
-   // System.out.println(bl[i].getNext());
-   //System.out.println((int)(bl[i].yCor) - 100);
+    // System.out.println(bl[i].getNext());
+    //System.out.println((int)(bl[i].yCor) - 100);
   }
   /*thiss part
-  
-  
-  
-  
-  
-  
-  
-  */
-  
-  
-// Block test= new Block(0, 25, #FFFFFF)  ;
-//  test.setBelow(test.findBelow());
-// movers.add(test); 
-  
-//    for (int i = 0; i<bl.length; i++) {
-//      for(Block temp=bl[i];temp!=null; temp = temp.getNext()) {
-//      temp.drawMe();
-//      }
-//    }
-//  drawBlocks();
+   
+   
+   
+   
+   
+   
+   
+   */
+
+
+  // Block test= new Block(0, 25, #FFFFFF)  ;
+  //  test.setBelow(test.findBelow());
+  // movers.add(test); 
+
+  //    for (int i = 0; i<bl.length; i++) {
+  //      for(Block temp=bl[i];temp!=null; temp = temp.getNext()) {
+  //      temp.drawMe();
+  //      }
+  //    }
+  //  drawBlocks();
   //blocks.add(new Block());
 }
 
@@ -76,11 +76,11 @@ void draw() {
   if (!lose) {
     background(0);
     //lost();
-//    test.drawMe();
-//    test.getNext().drawMe();
+    //    test.drawMe();
+    //    test.getNext().drawMe();
     drawBlocks();
     moveBlocks();
- //   drawOutline();
+    //   drawOutline();
     //    if (frameCount%60==0) {
     //      Block temp = new Block(colors[rnd.nextInt(colors.length)],counter);
     //      //counter++;
@@ -106,18 +106,18 @@ void draw() {
 }
 
 void drawBlocks() {
-    for (int i = 0; i<bl.length; i++) {
-      for(Block temp=bl[i];temp!=null; temp = temp.getNext()) {
+  for (int i = 0; i<bl.length; i++) {
+    for (Block temp=bl[i]; temp!=null; temp = temp.getNext ()) {
       temp.drawMe();
-      }
     }
   }
-  void moveBlocks(){
-   for(int i = 0; i<movers.size();i++){
-     movers.get(i).drawMe();
-     movers.get(i).yCor +=5;
-  } 
+}
+void moveBlocks() {
+  for (int i = 0; i<movers.size (); i++) {
+    movers.get(i).drawMe();
+    movers.get(i).yCor +=5;
   }
+}
 //int i = 1;
 //Block temp = bl[i];
 //while(temp!=null) {
