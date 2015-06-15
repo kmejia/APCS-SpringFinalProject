@@ -63,14 +63,17 @@ class Block {
 
   boolean willHave(int y, int c) {
     Block temp = this;
-    System.out.println(temp);
-    while ( (temp!= null )&& ((int)temp.yCor/50!= y - 1 )) {
+    //System.out.println(temp);
+    while( (temp!= null)&&((int)temp.yCor> y + 50 ))  {
       temp = temp.getNext();
     }// at this point block it bottom of the column of 3 blockt to check
     if ( temp ==null) {
       return false;
     }  
-    while ( ( temp!= null)&&((int)temp.yCor/ 50!= y +1)) {
+        if (temp.fillColor ==c) {
+    return true;
+  }
+    while ( (temp!= null)&&((int)temp.yCor> y -50 )) {
       if ( temp.fillColor ==c) {
         return true;
       } 
@@ -78,6 +81,9 @@ class Block {
     }
     //at this point best case is temp is uppermost noude 
     //of 3 block colum this method checks 
+    if (temp.fillColor ==c) {
+    return true;
+  }
     if (temp==null) {
       return false;
     }
@@ -85,13 +91,17 @@ class Block {
   }
   boolean willCenterHave(int y, int c) {//works only for the center block(what's clicked)
     Block temp = this;
-    while ( (temp!= null)&&((int)temp.yCor / 50!= y - 1 )) {
+    while ( (temp!= null)&&((int)temp.yCor> y + 50 )) {
+      System.out.println(temp);
       temp = temp.getNext();
     }// at this point block it bottom of the column of 3 blockt to check
-    if ( temp ==null) {
+    if (temp==null) {
       return false;
-    }  
-    while ( (temp!= null)&&((int)temp.yCor / 50!= y +1 )) {
+    }
+    if (temp.fillColor ==c) {
+    return true;
+  }
+    while ( (temp!= null)&&((int)temp.yCor> y -50 )) {
       if ( (temp.fillColor ==c) && (temp.yCor!=y)) {//we dont count the block itself
         return true;
       } 
@@ -99,9 +109,13 @@ class Block {
     }
     //at this point best case is temp is uppermost noude 
     //of 3 block colum this method checks 
-    if (temp==null) {
+     if (temp==null) {
       return false;
     }
+    if (temp.fillColor ==c) {
+    return true;
+  }
+   
     return  temp.fillColor ==c;
   }
   boolean hasFriends() {
@@ -131,7 +145,7 @@ class Block {
   }
   void removeBlock(Boolean yes) {
     if (yes) {
-      fillColor = #000000;
+      fillColor = #FAFF03;
     }
   }
   Block getLeft() {
