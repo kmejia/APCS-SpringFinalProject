@@ -75,7 +75,7 @@ class Block {
 //  }
     while ( (temp!= null)&&((int)temp.yCor> y -50 )) {
       if ((temp.fillColor ==c) && (temp.yCor==y)) {
-        System.out.println("A");
+       // System.out.println("A");
         return true;
       } 
       temp = temp.getNext();
@@ -95,19 +95,19 @@ class Block {
   boolean willCenterHave(int y, int c) {//works only for the center block(what's clicked)
     Block temp = this;
     while ( (temp!= null)&&((int)temp.yCor> y + 50 )) {
-      System.out.println(temp);
+      //System.out.println(temp);
       temp = temp.getNext();
     }// at this point block it bottom of the column of 3 blockt to check
     if (temp==null) {
       return false;
     }
     if ((temp.fillColor ==c) && ((int)temp.yCor!=y)) {
-System.out.println("A"+temp.yCor + c+this.yCor);      
+//System.out.println("A"+temp.yCor + c+this.yCor);      
     return true;
   }
     while ( (temp!= null)&&((int)temp.yCor> y -50 )) {
       if ( (temp.fillColor ==c) && (temp.yCor!=y)) {//we dont count the block itself
-      System.out.println("B");      
+     // System.out.println("B");      
 
         return true;
       } 
@@ -119,16 +119,16 @@ System.out.println("A"+temp.yCor + c+this.yCor);
       return false;
     }
     if (temp.fillColor ==c) {
-      System.out.println("C");      
+     // System.out.println("C");      
 
     return true;
   }
-   System.out.println("D");      
+   //System.out.println("D");      
 
     return  temp.fillColor ==c;
   }
   boolean hasFriends() {
-     System.out.println(fillColor); 
+    // System.out.println(fillColor); 
     int Y = (int)yCor;
     int i = (int)xCor / 50;
     Block left, center, right;
