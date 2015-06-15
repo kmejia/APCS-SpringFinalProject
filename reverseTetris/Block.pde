@@ -12,7 +12,6 @@ class Block {
   Block next;
   int counter;
   boolean moving = true;
-  //color = data
   public String toString() {
     String ans = "" ;
     return ans  + xCor+"," + yCor;
@@ -48,21 +47,16 @@ class Block {
   }
 
   void move() {
-
     yCor += speed;
   }
 
-  //  boolean findBelow() {
-  //    if (down.counter != counter) {
-  //      if ((int)yCor >= (int)down.yCor+cellSize) {
-  //        return true;
-  //      }
-  //    }
-  //    return false;
-  //  }
 
   void setNext(Block n) {
     next = n;
+  }
+  
+  void removeBlock(){
+   fillColor = #000000;
   }
 
   Block getNext() {
