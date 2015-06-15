@@ -1,3 +1,4 @@
+
 import java.io.*;
 import java.util.*;
 
@@ -61,6 +62,8 @@ void drawOutline() {
     grid[mouseX/cellSize][mouseY/cellSize].outlineMe();
   }
 }
+
+
 void draw() {
   //System.out.println(mouseY);
   if (!lost()) {
@@ -107,7 +110,6 @@ void drawBlocks() {
     }
   }
 }
-
 void moveBlocks() {
   for (int i = 0; i<movers.size (); i++) {
     Block temp = movers.get(i);
@@ -115,6 +117,7 @@ void moveBlocks() {
     temp.move();
   }
 }
+
 boolean lost() {
   for (int n = 0; n < bl.length; n++) {
     for (Block temp = bl[n]; temp != null; temp = temp.getNext ()) {
@@ -145,7 +148,7 @@ Block isBlock() {
 void mousePressed() {
   Block current = isBlock();
   if (current!=null) {
-    current.removeBlock();
+    current.removeBlock(current.hasFriends());
   }
 }
 
@@ -154,4 +157,3 @@ void endSequence() {
   background(1);
   System.out.println("score" +score);
 }
-

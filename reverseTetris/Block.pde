@@ -8,7 +8,7 @@ class Block {
   Block left;
   Block right;
   Block up;
-  Block down;
+  Block below;
   Block next;
   int counter;
   boolean moving = true;
@@ -23,7 +23,7 @@ class Block {
     fillColor = colour;
     counter = count;
     next=null;
-    below = null
+    below = null;
     //xCor = (rnd.nextInt(numCellsCol) * cellSize) + (cellSize / 2);
   }
   Block(int x, int y, int colour) {
@@ -31,7 +31,7 @@ class Block {
     yCor = y; 
     fillColor = colour;
     next=null;
-    below = null
+    below = null;
   }
   Block(int x, int y, int colour, int count) {
     xCor = x;
@@ -60,25 +60,65 @@ class Block {
     next = n;
   }
   /* new content*/
+  
   boolean willHave(int y, int c){
-    
-  return false;
+    Block temp = this;
+    System.out.println(temp);
+    while ((temp!= null )|| ((int)temp.yCor!= y - 25 )) {
+      temp = temp.getNext();
+    }// at this point block it bottom of the column of 3 blockt to check
+  if ( temp ==null) {
+    return false;
+      }  
+      while (( temp!= null)||((int)temp.yCor!= y + 25)) {
+       if( temp.fillColor ==c) {
+        return true;
+       } 
+        temp = temp.getNext();
+      }
+      //at this point best case is temp is uppermost noude 
+      //of 3 block colum this method checks 
+      if (temp==null) {
+      return false;    
+      }
+      return  temp.fillColor ==c;
+  }
+  boolean willCenterHave(int y, int c){//works only for the center block(what's clicked)
+    Block temp = this;
+    while ((temp!= null)||((int)temp.yCor!= y - 25 )) {
+      temp = temp.getNext();
+    }// at this point block it bottom of the column of 3 blockt to check
+  if ( temp ==null) {
+    return false;
+      }  
+      while ((temp!= null)||(int)temp.yCor!= y + 25 ) {
+       if( (temp.fillColor ==c) && (temp.yCor!=y)) {//we dont count the block itself
+        return true;
+       } 
+        temp = temp.getNext();
+      }
+      //at this point best case is temp is uppermost noude 
+      //of 3 block colum this method checks 
+      if (temp==null) {
+      return false;    
+      }
+      return  temp.fillColor ==c;
   }
   boolean hasFriends() {
-    int Y = yCor;
-    Block left = bl[(int)xCor / 50 - 1]; 
+    int Y = (int)yCor;
+    Block left = bl[(int)xCor / 50 - 1]; //these should be the starting blocks 
+                                   //of the linked list
    Block center = bl[(int)xCor / 50 + 0]; 
-   Block  left = bl[(int)xCor / 50 + 1]; 
+   Block  right = bl[(int)xCor / 50 + 1]; 
    return left.willHave(Y ,fillColor ) ||
-   center.willCenterHave(y ,fillColor) || 
-   and right.willHave(y ,fillColor);
+   center.willCenterHave(Y ,fillColor) || 
+    right.willHave(Y ,fillColor);
   }
   void removeBlock(Boolean yes){
     if(yes){
    fillColor = #000000;
-   "
+     }
   }
-
   Block getLeft() {
     return left;
   }
