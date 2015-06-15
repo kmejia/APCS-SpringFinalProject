@@ -28,7 +28,7 @@ void setup() {
     bl[i] = new Block( 50*i, 450, #FFFFFF ); //the bottom row
     //Block d =new Block(50 *i, (int)(bl[i].yCor) - 50, #FFFFFF);
     //d.drawMe();
-    bl[i].setNext(new Block(50 *i, (int)(bl[i].yCor) - 50, #FFFFFF));
+///////////////////    //bl[i].setNext(new Block(50 *i, (int)(bl[i].yCor) - 50, #FFFFFF));
     //bl[i].getNext().drawMe();
     // System.out.println(bl[i].getNext());
     //System.out.println((int)(bl[i].yCor) - 100);
@@ -78,7 +78,7 @@ void draw() {
     moveBlocks();
     drawOutline();
     if (frameCount%120==0) {
-      movers.add(new Block(0, 0, #FFFFFF));
+      movers.add(new Block(rnd.nextInt(20) * 50, 0, colors[rnd.nextInt(4)]));
     }
 //    for(int i = 0;i<bl.length;i++){
 //      Block  b = bl[i] ;

@@ -101,8 +101,8 @@ class Block {
     if (temp==null) {
       return false;
     }
-    if ((temp.fillColor ==c) && (temp.yCor!=y)) {
-System.out.println("A");      
+    if ((temp.fillColor ==c) && ((int)temp.yCor!=y)) {
+System.out.println("A"+temp.yCor + c+this.yCor);      
     return true;
   }
     while ( (temp!= null)&&((int)temp.yCor> y -50 )) {
@@ -128,6 +128,7 @@ System.out.println("A");
     return  temp.fillColor ==c;
   }
   boolean hasFriends() {
+     System.out.println(fillColor); 
     int Y = (int)yCor;
     int i = (int)xCor / 50;
     Block left, center, right;
@@ -153,9 +154,26 @@ System.out.println("A");
       right.willHave(Y, fillColor);
   }
   void removeBlock(Boolean yes) {
-    if (yes) {
-      fillColor = #FAFF03;
-    }
+    if (yes) {//////////////System.out.println(yes);
+//      int c = fillColor;
+//      Block temp = bl[(int)xCor/50];
+//      while((temp.getNext()!=null) &&(temp.fillColor!=c)) {
+//        temp = temp.getNext();
+//      }//at this point temp's next has color c
+//      temp.setNext(null);//nodes with color c no longer attatched to linked list
+//  Block temp2 = this;
+//      while ((temp2!=null) && (temp2.getNext().fillColor == c)){
+           fillColor = #FAFF03;
+//      temp2 = temp2.getNext();
+//      }//at this point ever next should be in moving
+//      while (temp2!=null){
+//        movers.add(temp2);
+//        temp2 = temp2.getNext();
+//      }
+   }
+  }
+  void removeCol(int y,  int c){
+  
   }
   Block getLeft() {
     return left;
