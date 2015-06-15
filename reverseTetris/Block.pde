@@ -163,7 +163,8 @@ class Block {
       //      temp.setNext(null);//nodes with color c no longer attatched to linked list
       //  Block temp2 = this;
       //      while ((temp2!=null) && (temp2.getNext().fillColor == c)){
-      fillColor = #FF03FB;
+    /////  fillColor = #FF03FB;
+    removeCol((int)xCor/50, fillColor);
       //      temp2 = temp2.getNext();
       //      }//at this point ever next should be in moving
       //      while (temp2!=null){
