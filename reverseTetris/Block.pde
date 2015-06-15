@@ -74,7 +74,8 @@ class Block {
 //    return true;
 //  }
     while ( (temp!= null)&&((int)temp.yCor> y -50 )) {
-      if ( temp.fillColor ==c) {
+      if ((temp.fillColor ==c) && (temp.yCor==y)) {
+        System.out.println("A");
         return true;
       } 
       temp = temp.getNext();
