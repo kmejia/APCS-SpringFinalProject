@@ -167,6 +167,6 @@ void mousePressed() {
 
 void endSequence() {
   noLoop();
-  background(1);
+  //background(1);
   System.out.println("final score = " +score);
 }
