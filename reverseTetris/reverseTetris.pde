@@ -14,7 +14,7 @@ int score =0;
 int[] colors = {
   #FF0000, #00FF00, #0000FF, #F6FF00
 };
-int counter = 0;
+int difficulty = 0;
 //Block test = new Block((0*50) + 25, 427, #FFFFFF);
 //Block test2 =new Block((0*50) + 25, 427 - 50, #FFFFFF);
 void setup() {
@@ -77,7 +77,7 @@ void draw() {
     drawBlocks();
     moveBlocks();
     drawOutline();
-    if (frameCount%120==0) {
+    if (frameCount% (120 - difficulty)==0) {
       movers.add(new Block(rnd.nextInt(20) * 50, 0, colors[rnd.nextInt(4)]));
     }
 //    for(int i = 0;i<bl.length;i++){
@@ -107,7 +107,10 @@ void update() {
       movers.remove(temp);
       temp.setBelow(list);
     }
-  }
+  }if(frameCount < 360) {
+  difficulty = 0;}
+ if(frameCount < 3600) 
+ { difficulty = 90;}
 }
 
 void drawBlocks() {
@@ -157,11 +160,13 @@ void mousePressed() {
   if (current!=null) {
     System.out.println("current is "+current);
     current.removeBlock(current.hasFriends());
+    score++;
+    System.out.println("score up!!");
   }
 }
 
 void endSequence() {
   noLoop();
   background(1);
-  System.out.println("score" +score);
+  System.out.println("final score = " +score);
 }

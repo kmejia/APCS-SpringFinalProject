@@ -163,7 +163,7 @@ System.out.println("A"+temp.yCor + c+this.yCor);
 //      temp.setNext(null);//nodes with color c no longer attatched to linked list
 //  Block temp2 = this;
 //      while ((temp2!=null) && (temp2.getNext().fillColor == c)){
-           fillColor = #FAFF03;
+           fillColor = #FF7003;
 //      temp2 = temp2.getNext();
 //      }//at this point ever next should be in moving
 //      while (temp2!=null){
