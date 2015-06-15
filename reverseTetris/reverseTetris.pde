@@ -168,5 +168,5 @@ void mousePressed() {
 void endSequence() {
   noLoop();
   //background(1);
-  System.out.println("final score = " +score);
+  System.out.println("You have lost. Try again by closing this and starting a new round.");
 }

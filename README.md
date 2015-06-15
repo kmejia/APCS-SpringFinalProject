@@ -1,6 +1,10 @@
 # Project2
 Spring Semester Final Project
 
+Project Description
+======
+This is a tetris-like/block game where you try to click on blocks that are next to at least two other blocks of the same color to get rid of them. 
+
 Installation
 ======
 1. Have Processing downloaded
@@ -9,7 +13,7 @@ Installation
 
 Use
 ======
-After opening the reverseTetris file through Processing, use Processing's play button to start the program. Afterwards, you will see some falling blocks.
+After opening the reverseTetris file through Processing, use Processing's play button to start the program. Afterwards, you will see some falling blocks. Blocks will pile up and you lose when blocks reach the top level of the window. To get rid of the blocks, click on them when you see that they are arranged such that there are three or more in contact with each other that are the same color. The goal of the game is to last as long as you can without losing.
 
 Changes 
 ======
@@ -23,4 +27,7 @@ Changes
 6/9: Changed how blocks were added. (Class: KM, RT) <br>
 6/10: Continued to change how blocks were added. (Class: RT, KM) <br>
 6/11: Worked on how blocks stack. (Class: KM, RT) <br>
-
+6/12: Still working on the block stacking error. (Class: KM, RT) <br>
+6/13: Did I mention we were working on the stacking error? It's a problem. (RT, KM) <br>
+6/14: Finally found something to fix the stacking error. Started work on removing blocks and fixing a few bugs. (KM, RT) <br>
+6/15: Still working on removing blocks. Stacking error has returned again. (KM, RT) <br>
