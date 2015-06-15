@@ -64,13 +64,13 @@ class Block {
   boolean willHave(int y, int c){
     Block temp = this;
     System.out.println(temp);
-    while ((temp!= null )|| ((int)temp.yCor!= y - 25 )) {
+    while ((temp!= null )&& ((int)temp.yCor!= y - 50 )) {
       temp = temp.getNext();
     }// at this point block it bottom of the column of 3 blockt to check
   if ( temp ==null) {
     return false;
       }  
-      while (( temp!= null)||((int)temp.yCor!= y + 25)) {
+      while (( temp!= null)&&((int)temp.yCor!= y + 50)) {
        if( temp.fillColor ==c) {
         return true;
        } 
@@ -85,13 +85,13 @@ class Block {
   }
   boolean willCenterHave(int y, int c){//works only for the center block(what's clicked)
     Block temp = this;
-    while ((temp!= null)||((int)temp.yCor!= y - 25 )) {
+    while ((temp!= null)&&((int)temp.yCor!= y - 50 )) {
       temp = temp.getNext();
     }// at this point block it bottom of the column of 3 blockt to check
   if ( temp ==null) {
     return false;
       }  
-      while ((temp!= null)||(int)temp.yCor!= y + 25 ) {
+      while ((temp!= null)&&(int)temp.yCor!= y + 50 ) {
        if( (temp.fillColor ==c) && (temp.yCor!=y)) {//we dont count the block itself
         return true;
        } 
