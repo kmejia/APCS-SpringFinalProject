@@ -72,7 +72,7 @@ void draw() {
     /*uncomment below to see what happens under update 
      
      */
-    
+    update();
     drawBlocks();
     moveBlocks();
     drawOutline();
@@ -132,24 +132,21 @@ Block isBlock() {
   int clickY = (mouseY-(mouseY%cellSize))/50;
   int Y = 9 - clickY;
   Block temp = bl[clickX];
-  while (temp.getNext() != null && Y>0) {
+  while (temp.getNext () != null && Y>0) {
     temp = temp.getNext();
     Y--;
   }
-  if (Y!=0){
+  if (Y!=0) {
     return null;
-  }
-  else{
+  } else {
     return temp;
   }
 }
 
 void mousePressed() {
   Block current = isBlock();
-  if(current!=null){
+  if (current!=null) {
     current.removeBlock();
-//    current.fillColor = #F0F0F0;
-    current.drawMe();
   }
 }
 

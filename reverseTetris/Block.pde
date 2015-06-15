@@ -50,17 +50,16 @@ class Block {
     yCor += speed;
   }
 
-
+  Block getNext() {
+    return next;
+  }
+  
   void setNext(Block n) {
     next = n;
   }
   
   void removeBlock(){
    fillColor = #000000;
-  }
-
-  Block getNext() {
-    return next;
   }
 
   Block getLeft() {
@@ -72,10 +71,6 @@ class Block {
 
   Block getRight() {
     return right;
-  }
-
-  Block getUp() {
-    return up;
   }
 
   Block getBelow() {
