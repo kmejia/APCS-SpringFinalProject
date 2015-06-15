@@ -80,6 +80,13 @@ void draw() {
     if (frameCount%120==0) {
       movers.add(new Block(0, 0, #FFFFFF));
     }
+//    for(int i = 0;i<bl.length;i++){
+//      Block  b = bl[i] ;
+//      while (b!=null){
+//        System.out.println(b);
+//        b = b.getNext();
+//      }
+//    } 
   } else {
     endSequence();
   }
@@ -148,6 +155,7 @@ Block isBlock() {
 void mousePressed() {
   Block current = isBlock();
   if (current!=null) {
+    System.out.println("current is "+current);
     current.removeBlock(current.hasFriends());
   }
 }

@@ -55,84 +55,84 @@ class Block {
   Block getNext() {
     return next;
   }
-  
+
   void setNext(Block n) {
     next = n;
   }
   /* new content*/
-  
-  boolean willHave(int y, int c){
+
+  boolean willHave(int y, int c) {
     Block temp = this;
     System.out.println(temp);
-    while ((temp!= null )&& ((int)temp.yCor!= y - 50 )) {
+    while ( (temp!= null )&& ((int)temp.yCor/50!= y - 1 )) {
       temp = temp.getNext();
     }// at this point block it bottom of the column of 3 blockt to check
-  if ( temp ==null) {
-    return false;
-      }  
-      while (( temp!= null)&&((int)temp.yCor!= y + 50)) {
-       if( temp.fillColor ==c) {
+    if ( temp ==null) {
+      return false;
+    }  
+    while ( ( temp!= null)&&((int)temp.yCor/ 50!= y +1)) {
+      if ( temp.fillColor ==c) {
         return true;
-       } 
-        temp = temp.getNext();
-      }
-      //at this point best case is temp is uppermost noude 
-      //of 3 block colum this method checks 
-      if (temp==null) {
-      return false;    
-      }
-      return  temp.fillColor ==c;
+      } 
+      temp = temp.getNext();
+    }
+    //at this point best case is temp is uppermost noude 
+    //of 3 block colum this method checks 
+    if (temp==null) {
+      return false;
+    }
+    return  temp.fillColor ==c;
   }
-  boolean willCenterHave(int y, int c){//works only for the center block(what's clicked)
+  boolean willCenterHave(int y, int c) {//works only for the center block(what's clicked)
     Block temp = this;
-    while ((temp!= null)&&((int)temp.yCor / 50!= y - 1 )) {
+    while ( (temp!= null)&&((int)temp.yCor / 50!= y - 1 )) {
       temp = temp.getNext();
     }// at this point block it bottom of the column of 3 blockt to check
-  if ( temp ==null) {
-    return false;
-      }  
-      while ((temp!= null)&&((int)temp.yCor / 50!= y +1 )) {
-       if( (temp.fillColor ==c) && (temp.yCor!=y)) {//we dont count the block itself
+    if ( temp ==null) {
+      return false;
+    }  
+    while ( (temp!= null)&&((int)temp.yCor / 50!= y +1 )) {
+      if ( (temp.fillColor ==c) && (temp.yCor!=y)) {//we dont count the block itself
         return true;
-       } 
-        temp = temp.getNext();
-      }
-      //at this point best case is temp is uppermost noude 
-      //of 3 block colum this method checks 
-      if (temp==null) {
-      return false;    
-      }
-      return  temp.fillColor ==c;
+      } 
+      temp = temp.getNext();
+    }
+    //at this point best case is temp is uppermost noude 
+    //of 3 block colum this method checks 
+    if (temp==null) {
+      return false;
+    }
+    return  temp.fillColor ==c;
   }
   boolean hasFriends() {
     int Y = (int)yCor;
     int i = (int)xCor / 50;
-    Block left,center, right;
-        center = bl[i + 0]; 
-        //cases for when we click the left/right edges
+    Block left, center, right;
+    center = bl[i + 0]; 
+    //cases for when we click the left/right edges
     if (i==0) {
-    right = bl[i + 1]; 
-     return right.willHave(Y ,fillColor ) ||
-   center.willCenterHave(Y ,fillColor) ; 
+      right = bl[i + 1]; 
+      return right.willHave(Y, fillColor ) ||
+        center.willCenterHave(Y, fillColor) ;
     }
-    if(i==19) {
-     left = bl[i - 1];  
-     return left.willHave(Y ,fillColor ) ||
-   center.willCenterHave(Y ,fillColor) ;
+    if (i==19) {
+      left = bl[i - 1];  
+      return left.willHave(Y, fillColor ) ||
+        center.willCenterHave(Y, fillColor) ;
     }
-    
+
     //these should be the starting blocks 
-                                   //of the linked list
-left = bl[i - 1]; 
- right = bl[i + 1];
-   return left.willHave(Y ,fillColor ) ||
-   center.willCenterHave(Y ,fillColor) || 
-    right.willHave(Y ,fillColor);
+    //of the linked list
+    left = bl[i - 1]; 
+    right = bl[i + 1];
+    return left.willHave(Y, fillColor ) ||
+      center.willCenterHave(Y, fillColor) || 
+      right.willHave(Y, fillColor);
   }
-  void removeBlock(Boolean yes){
-    if(yes){
-   fillColor = #000000;
-     }
+  void removeBlock(Boolean yes) {
+    if (yes) {
+      fillColor = #000000;
+    }
   }
   Block getLeft() {
     return left;
@@ -153,3 +153,4 @@ left = bl[i - 1];
     below = b;
   }
 }
+
