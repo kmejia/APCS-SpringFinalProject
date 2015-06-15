@@ -64,18 +64,18 @@ class Block {
   boolean willHave(int y, int c) {
     Block temp = this;
     //System.out.println(temp);
-    while( (temp!= null)&&((int)temp.yCor> y + 50 ))  {
+    while ( (temp!= null)&&((int)temp.yCor> y + 50 )) {
       temp = temp.getNext();
     }// at this point block it bottom of the column of 3 blockt to check
     if ( temp ==null) {
       return false;
     }  
-//        if (temp.fillColor ==c) {
-//    return true;
-//  }
+    //        if (temp.fillColor ==c) {
+    //    return true;
+    //  }
     while ( (temp!= null)&&((int)temp.yCor> y -50 )) {
       if ((temp.fillColor ==c) && (temp.yCor==y)) {
-       // System.out.println("A");
+        // System.out.println("A");
         return true;
       } 
       temp = temp.getNext();
@@ -83,14 +83,14 @@ class Block {
     //at this point best case is temp is uppermost noude 
     //of 3 block colum this method checks 
     return false;
-//   if (temp==null) {
-//      return false;
-//    }
-//    if (temp.fillColor ==c) {
-//    return true;
-//  }
-//    
-//    return  temp.fillColor ==c;
+    //   if (temp==null) {
+    //      return false;
+    //    }
+    //    if (temp.fillColor ==c) {
+    //    return true;
+    //  }
+    //    
+    //    return  temp.fillColor ==c;
   }
   boolean willCenterHave(int y, int c) {//works only for the center block(what's clicked)
     Block temp = this;
@@ -102,12 +102,12 @@ class Block {
       return false;
     }
     if ((temp.fillColor ==c) && ((int)temp.yCor!=y)) {
-//System.out.println("A"+temp.yCor + c+this.yCor);      
-    return true;
-  }
+      //System.out.println("A"+temp.yCor + c+this.yCor);      
+      return true;
+    }
     while ( (temp!= null)&&((int)temp.yCor> y -50 )) {
       if ( (temp.fillColor ==c) && (temp.yCor!=y)) {//we dont count the block itself
-     // System.out.println("B");      
+        // System.out.println("B");      
 
         return true;
       } 
@@ -115,15 +115,15 @@ class Block {
     }
     //at this point best case is temp is uppermost noude 
     //of 3 block colum this method checks 
-     if (temp==null) {
+    if (temp==null) {
       return false;
     }
     if (temp.fillColor ==c) {
-     // System.out.println("C");      
+      // System.out.println("C");      
 
-    return true;
-  }
-   //System.out.println("D");      
+      return true;
+    }
+    //System.out.println("D");      
 
     return  temp.fillColor ==c;
   }
@@ -155,25 +155,35 @@ class Block {
   }
   void removeBlock(Boolean yes) {
     if (yes) {//////////////System.out.println(yes);
-//      int c = fillColor;
-//      Block temp = bl[(int)xCor/50];
-//      while((temp.getNext()!=null) &&(temp.fillColor!=c)) {
-//        temp = temp.getNext();
-//      }//at this point temp's next has color c
-//      temp.setNext(null);//nodes with color c no longer attatched to linked list
-//  Block temp2 = this;
-//      while ((temp2!=null) && (temp2.getNext().fillColor == c)){
-           fillColor = #FF03FB;
-//      temp2 = temp2.getNext();
-//      }//at this point ever next should be in moving
-//      while (temp2!=null){
-//        movers.add(temp2);
-//        temp2 = temp2.getNext();
-//      }
-   }
+      //      int c = fillColor;
+      //      Block temp = bl[(int)xCor/50];
+      //      while((temp.getNext()!=null) &&(temp.fillColor!=c)) {
+      //        temp = temp.getNext();
+      //      }//at this point temp's next has color c
+      //      temp.setNext(null);//nodes with color c no longer attatched to linked list
+      //  Block temp2 = this;
+      //      while ((temp2!=null) && (temp2.getNext().fillColor == c)){
+      fillColor = #FF03FB;
+      //      temp2 = temp2.getNext();
+      //      }//at this point ever next should be in moving
+      //      while (temp2!=null){
+      //        movers.add(temp2);
+      //        temp2 = temp2.getNext();
+      //      }
+    }
   }
-  void removeCol(int y,  int c){
-  
+  void removeCol(int x, int clr) {
+    Block piggyback;
+    for (Block temp = bl[x]; temp.getNext ()!=null; temp=temp.getNext()) {
+      piggyback = temp;
+      if (temp.fillColor == clr) {
+        if (temp.getNext()==null){
+          piggyback.setNext(null);
+        } else{
+        piggyback.setNext(temp.getNext());
+        }
+      }
+    }
   }
   Block getLeft() {
     return left;
