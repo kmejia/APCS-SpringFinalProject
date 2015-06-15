@@ -106,10 +106,25 @@ class Block {
   }
   boolean hasFriends() {
     int Y = (int)yCor;
-    Block left = bl[(int)xCor / 50 - 1]; //these should be the starting blocks 
+    int i = (int)xCor / 50;
+    Block left,center, right;
+        center = bl[i + 0]; 
+        //cases for when we click the left/right edges
+    if (i!=0) {
+    right = bl[i + 1]; 
+     return right.willHave(Y ,fillColor ) ||
+   center.willCenterHave(Y ,fillColor) ; 
+    }
+    if(i!=19) {
+     left = bl[i - 1];  
+     return left.willHave(Y ,fillColor ) ||
+   center.willCenterHave(Y ,fillColor) ;
+    }
+    
+    //these should be the starting blocks 
                                    //of the linked list
-   Block center = bl[(int)xCor / 50 + 0]; 
-   Block  right = bl[(int)xCor / 50 + 1]; 
+left = bl[i - 1]; 
+ right = bl[i + 1];
    return left.willHave(Y ,fillColor ) ||
    center.willCenterHave(Y ,fillColor) || 
     right.willHave(Y ,fillColor);
