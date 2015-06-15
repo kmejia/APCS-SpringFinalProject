@@ -63,6 +63,7 @@ class Block {
 
   boolean willHave(int y, int c) {
     Block temp = this;
+<<<<<<< HEAD
     //System.out.println(temp);
     while( (temp!= null)&&((int)temp.yCor> y + 50 ))  {
       temp = temp.getNext();
@@ -74,6 +75,15 @@ class Block {
     return true;
   }
     while ( (temp!= null)&&((int)temp.yCor> y -50 )) {
+=======
+    while ( (temp.getNext()!= null )&& (9 - (int)temp.yCor/50!= y - 1 )) {
+      temp = temp.getNext();
+    }// at this point block it bottom of the column of 3 blockt to check
+//    if ( temp ==null) {
+//      return false;
+//    }  
+    while ( ( temp.getNext()!= null)&&(9 - (int)temp.yCor/ 50!= y +1)) {
+>>>>>>> 43bb07c835489362cdfac503f9063fbff6e6e2a0
       if ( temp.fillColor ==c) {
         return true;
       } 
@@ -81,16 +91,23 @@ class Block {
     }
     //at this point best case is temp is uppermost noude 
     //of 3 block colum this method checks 
+<<<<<<< HEAD
     if (temp.fillColor ==c) {
     return true;
   }
     if (temp==null) {
       return false;
     }
+=======
+//    if (temp==null) {
+//      return false;
+//    }
+>>>>>>> 43bb07c835489362cdfac503f9063fbff6e6e2a0
     return  temp.fillColor ==c;
   }
   boolean willCenterHave(int y, int c) {//works only for the center block(what's clicked)
     Block temp = this;
+<<<<<<< HEAD
     while ( (temp!= null)&&((int)temp.yCor> y + 50 )) {
       System.out.println(temp);
       temp = temp.getNext();
@@ -102,6 +119,15 @@ class Block {
     return true;
   }
     while ( (temp!= null)&&((int)temp.yCor> y -50 )) {
+=======
+    while ( (temp.getNext()!= null)&&((int)temp.yCor / 50!= y - 1 )) {
+      temp = temp.getNext();
+    }// at this point block it bottom of the column of 3 blockt to check
+//    if ( temp ==null) {
+//      return false;
+//    }  
+    while ( (temp.getNext()!= null)&&((int)temp.yCor / 50!= y +1 )) {
+>>>>>>> 43bb07c835489362cdfac503f9063fbff6e6e2a0
       if ( (temp.fillColor ==c) && (temp.yCor!=y)) {//we dont count the block itself
         return true;
       } 
@@ -109,6 +135,7 @@ class Block {
     }
     //at this point best case is temp is uppermost noude 
     //of 3 block colum this method checks 
+<<<<<<< HEAD
      if (temp==null) {
       return false;
     }
@@ -116,6 +143,11 @@ class Block {
     return true;
   }
    
+=======
+//    if (temp==null) {
+//      return false;
+//    }
+>>>>>>> 43bb07c835489362cdfac503f9063fbff6e6e2a0
     return  temp.fillColor ==c;
   }
   boolean hasFriends() {
@@ -139,6 +171,9 @@ class Block {
     //of the linked list
     left = bl[i - 1]; 
     right = bl[i + 1];
+    System.out.println(left.willHave(Y, fillColor ) ||
+      center.willCenterHave(Y, fillColor) || 
+      right.willHave(Y, fillColor));
     return left.willHave(Y, fillColor ) ||
       center.willCenterHave(Y, fillColor) || 
       right.willHave(Y, fillColor);
