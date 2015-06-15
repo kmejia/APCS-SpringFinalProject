@@ -70,9 +70,9 @@ class Block {
     if ( temp ==null) {
       return false;
     }  
-        if (temp.fillColor ==c) {
-    return true;
-  }
+//        if (temp.fillColor ==c) {
+//    return true;
+//  }
     while ( (temp!= null)&&((int)temp.yCor> y -50 )) {
       if ( temp.fillColor ==c) {
         return true;
@@ -81,14 +81,15 @@ class Block {
     }
     //at this point best case is temp is uppermost noude 
     //of 3 block colum this method checks 
-   if (temp==null) {
-      return false;
-    }
-    if (temp.fillColor ==c) {
-    return true;
-  }
-    
-    return  temp.fillColor ==c;
+    return false;
+//   if (temp==null) {
+//      return false;
+//    }
+//    if (temp.fillColor ==c) {
+//    return true;
+//  }
+//    
+//    return  temp.fillColor ==c;
   }
   boolean willCenterHave(int y, int c) {//works only for the center block(what's clicked)
     Block temp = this;
