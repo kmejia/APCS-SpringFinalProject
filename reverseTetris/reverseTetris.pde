@@ -61,8 +61,6 @@ void drawOutline() {
     grid[mouseX/cellSize][mouseY/cellSize].outlineMe();
   }
 }
-
-
 void draw() {
   //System.out.println(mouseY);
   if (!lost()) {
@@ -97,6 +95,7 @@ void update() {
     if ((int)list.yCor - 50 ==(int)temp.yCor) {
       list.setNext(temp);
       movers.remove(temp);
+      temp.setBelow(list);
     }
   }
 }
@@ -108,6 +107,7 @@ void drawBlocks() {
     }
   }
 }
+
 void moveBlocks() {
   for (int i = 0; i<movers.size (); i++) {
     Block temp = movers.get(i);
@@ -115,7 +115,6 @@ void moveBlocks() {
     temp.move();
   }
 }
-
 boolean lost() {
   for (int n = 0; n < bl.length; n++) {
     for (Block temp = bl[n]; temp != null; temp = temp.getNext ()) {
@@ -154,5 +153,5 @@ void endSequence() {
   noLoop();
   background(1);
   System.out.println("score" +score);
-} 
+}
 

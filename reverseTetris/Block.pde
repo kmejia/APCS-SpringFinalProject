@@ -23,6 +23,7 @@ class Block {
     fillColor = colour;
     counter = count;
     next=null;
+    below = null
     //xCor = (rnd.nextInt(numCellsCol) * cellSize) + (cellSize / 2);
   }
   Block(int x, int y, int colour) {
@@ -30,6 +31,7 @@ class Block {
     yCor = y; 
     fillColor = colour;
     next=null;
+    below = null
   }
   Block(int x, int y, int colour, int count) {
     xCor = x;
@@ -57,9 +59,24 @@ class Block {
   void setNext(Block n) {
     next = n;
   }
-  
-  void removeBlock(){
+  /* new content*/
+  boolean willHave(int y, int c){
+    
+  return false;
+  }
+  boolean hasFriends() {
+    int Y = yCor;
+    Block left = bl[(int)xCor / 50 - 1]; 
+   Block center = bl[(int)xCor / 50 + 0]; 
+   Block  left = bl[(int)xCor / 50 + 1]; 
+   return left.willHave(Y ,fillColor ) ||
+   center.willCenterHave(y ,fillColor) || 
+   and right.willHave(y ,fillColor);
+  }
+  void removeBlock(Boolean yes){
+    if(yes){
    fillColor = #000000;
+   "
   }
 
   Block getLeft() {
@@ -74,10 +91,10 @@ class Block {
   }
 
   Block getBelow() {
-    return down;
+    return below;
   }
 
   void setBelow(Block b) {
-    down = b;
+    below = b;
   }
 }
