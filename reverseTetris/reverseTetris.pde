@@ -157,7 +157,7 @@ Block isBlock() {
 
 void mousePressed() {
   Block current = isBlock();
-  if (current!=null) {
+  if ((current!=null )&&(current.fillColor!=#FFFFFF)) {
     System.out.println("current is "+current);
     current.removeBlock(current.hasFriends());
     score++;

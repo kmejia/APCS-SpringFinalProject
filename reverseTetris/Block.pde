@@ -163,8 +163,8 @@ class Block {
       //      temp.setNext(null);//nodes with color c no longer attatched to linked list
       //  Block temp2 = this;
       //      while ((temp2!=null) && (temp2.getNext().fillColor == c)){
-    /////  fillColor = #FF03FB;
-    removeCol((int)xCor/50, fillColor);
+      /////  fillColor = #FF03FB;
+      removeSingle((int)xCor/50, (int) yCor, fillColor);
       //      temp2 = temp2.getNext();
       //      }//at this point ever next should be in moving
       //      while (temp2!=null){
@@ -173,19 +173,39 @@ class Block {
       //      }
     }
   }
-  void removeCol(int x, int clr) {
+  void removeSingle(int index, int y, int clr) {
+    //    Block piggyback;
+    //    for (Block temp = bl[x]; temp.getNext ()!=null; temp=temp.getNext()) {
+    //      piggyback = temp;
+    //      if (temp.fillColor == clr) {
+    //        if (temp.getNext()==null){
+    //          piggyback.setNext(null);
+    //        } else{
+    //        piggyback.setNext(temp.getNext());
+    //        }
+    //      }
+    //    }
+    Block deleted = bl[index];
     Block piggyback;
-    for (Block temp = bl[x]; temp.getNext ()!=null; temp=temp.getNext()) {
-      piggyback = temp;
-      if (temp.fillColor == clr) {
-        if (temp.getNext()==null){
-          piggyback.setNext(null);
-        } else{
-        piggyback.setNext(temp.getNext());
-        }
-      }
-    }
+    for (piggyback = deleted; (int)deleted.yCor!= y; deleted =deleted.getNext()) {
+      piggyback = deleted;
+    }//at this point piggyback.getNext() ==deleted
+    //while(deleted!=null) {
+if (deleted.getNext() ==null) {//case where the tippy top block is deleted
+   piggyback.setNext(null);
+}
+else {
+  deleted = deleted.getNext();
+  while(deleted!=null) {
+    movers.add(deleted);//every thing above piggyback is in the movers arraylist
+    deleted = deleted.getNext();
   }
+    //piggyback.setNext(deleted.getNext());
+    piggyback.setNext(null);//anything below piggyback, inclusive, stays stationary
+    }
+  } 
+
+
   Block getLeft() {
     return left;
   }
