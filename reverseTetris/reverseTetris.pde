@@ -28,7 +28,7 @@ void setup() {
     bl[i] = new Block( 50*i, 450, #FFFFFF ); //the bottom row
     //Block d =new Block(50 *i, (int)(bl[i].yCor) - 50, #FFFFFF);
     //d.drawMe();
-///////////////////    //bl[i].setNext(new Block(50 *i, (int)(bl[i].yCor) - 50, #FFFFFF));
+    ///////////////////    //bl[i].setNext(new Block(50 *i, (int)(bl[i].yCor) - 50, #FFFFFF));
     //bl[i].getNext().drawMe();
     // System.out.println(bl[i].getNext());
     //System.out.println((int)(bl[i].yCor) - 100);
@@ -77,16 +77,16 @@ void draw() {
     drawBlocks();
     moveBlocks();
     drawOutline();
-    if (frameCount% (120 - difficulty)==0) {
-      movers.add(new Block(rnd.nextInt(20) * 50, 0, colors[rnd.nextInt(4)]));
+    if (frameCount% (/*120 - difficulty*/ 45)==0) {
+      movers.add(new Block(rnd.nextInt(20) * 50, 0, colors[rnd.nextInt(colors.length)]));
     }
-//    for(int i = 0;i<bl.length;i++){
-//      Block  b = bl[i] ;
-//      while (b!=null){
-//        System.out.println(b);
-//        b = b.getNext();
-//      }
-//    } 
+    //    for(int i = 0;i<bl.length;i++){
+    //      Block  b = bl[i] ;
+    //      while (b!=null){
+    //        System.out.println(b);
+    //        b = b.getNext();
+    //      }
+    //    }
   } else {
     endSequence();
   }
@@ -104,13 +104,16 @@ void update() {
     //now i want to check if it's right below temp, which is moving
     if ((int)list.yCor - 50 ==(int)temp.yCor) {
       list.setNext(temp);
-      movers.remove(temp);
       temp.setBelow(list);
+      movers.remove(temp);
     }
-  }if(frameCount < 360) {
-  difficulty = 0;}
- if(frameCount < 3600) 
- { difficulty = 90;}
+  }
+  //  if (frameCount < 3600) {
+  //    difficulty = 90;
+  //  }
+  //  if (frameCount < 3600) { 
+  //    difficulty = 60;
+  //  }
 }
 
 void drawBlocks() {
@@ -140,8 +143,8 @@ boolean lost() {
 }
 
 Block isBlock() {
-  int clickX = (mouseX-(mouseX%cellSize))/50;
-  int clickY = (mouseY-(mouseY%cellSize))/50;
+  int clickX = mouseX/50;
+  int clickY = mouseY/50;
   int Y = 9 - clickY;
   Block temp = bl[clickX];
   while (temp.getNext () != null && Y>0) {
@@ -157,8 +160,12 @@ Block isBlock() {
 
 void mousePressed() {
   Block current = isBlock();
+  if (current != null) {   
+    System.out.println("current is "+current + " and nextBlock is " + current.getNext() + " and belowBlock is " + current.getBelow());
+  } else {
+    System.out.println("@Ghost");
+  }
   if ((current!=null )&&(current.fillColor!=#FFFFFF)) {
-    System.out.println("current is "+current);
     current.removeBlock(current.hasFriends());
     score++;
     System.out.println("score up!!");
@@ -170,3 +177,4 @@ void endSequence() {
   //background(1);
   System.out.println("You have lost. Try again by closing this and starting a new round.");
 }
+

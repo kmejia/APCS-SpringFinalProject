@@ -10,6 +10,7 @@ class Block {
   Block up;
   Block below;
   Block next;
+  Boolean toBeRemoved = false;
   int counter;
   boolean moving = true;
   public String toString() {
@@ -76,6 +77,7 @@ class Block {
     while ( (temp!= null)&&((int)temp.yCor> y -50 )) {
       if ((temp.fillColor ==c) && (temp.yCor==y)) {
         // System.out.println("A");
+        temp.toBeRemoved = true;
         return true;
       } 
       temp = temp.getNext();
@@ -120,7 +122,7 @@ class Block {
     }
     if (temp.fillColor ==c) {
       // System.out.println("C");      
-
+      temp.toBeRemoved = true;
       return true;
     }
     //System.out.println("D");      
@@ -164,13 +166,16 @@ class Block {
       //  Block temp2 = this;
       //      while ((temp2!=null) && (temp2.getNext().fillColor == c)){
       /////  fillColor = #FF03FB;
-      
-//      removeSingle((int)xCor/50 - 1, (int) yCor, fillColor);
-      
-     
+
+//      if ((int)xCor/50-1 >= 0){
+//        removeSingle((int)xCor/50 - 1, (int) yCor, fillColor);
+//      }
+//      if ((int)xCor/50-1 <= 19){
+//        removeSingle((int)xCor/50 +1, (int) yCor, fillColor);
+//      } 
       removeSingle((int)xCor/50, (int) yCor, fillColor);
-      
-    //  removeSingle((int)xCor/50 +1, (int) yCor, fillColor);
+
+      //  
 
       //      temp2 = temp2.getNext();
       //      }//at this point ever next should be in moving
@@ -181,40 +186,47 @@ class Block {
     }
   }
   void removeSingle(int index, int y, int clr) {
-    //    Block piggyback;
-    //    for (Block temp = bl[x]; temp.getNext ()!=null; temp=temp.getNext()) {
-    //      piggyback = temp;
-    //      if (temp.fillColor == clr) {
-    //        if (temp.getNext()==null){
-    //          piggyback.setNext(null);
-    //        } else{
-    //        piggyback.setNext(temp.getNext());
-    //        }
-    //      }
-    //    }
-   // if((index==-1)||(index==20)) {return ;}
     Block deleted = bl[index];
-    Block piggyback;
-    for (piggyback = deleted; (int)deleted.yCor!= y; deleted =deleted.getNext()) {
+    Block piggyback = deleted;
+    while (deleted.getNext () != null && deleted.yCor > y) {
       piggyback = deleted;
-      if (deleted==null) {
-        return;
-        }
-    }//at this point piggyback.getNext() ==deleted
-    //while(deleted!=null) {
-if (deleted.getNext() ==null) {//case where the tippy top block is deleted
-   piggyback.setNext(null);
-}
-else {
-  deleted = deleted.getNext();
-  while(deleted!=null) {
-    movers.add(deleted);//every thing above piggyback is in the movers arraylist
-    deleted = deleted.getNext();
-  }
-    //piggyback.setNext(deleted.getNext());
-    piggyback.setNext(null);//anything below piggyback, inclusive, stays stationary
+      deleted = deleted.getNext();
+    }
+    if (deleted.getNext() ==null) {//case where the tippy top block is deleted
+      System.out.println("#Stupid");
+      piggyback.setNext(null);
+      deleted = null;
+    } else {
+      System.out.println("#MoreStupid");
+      Block temp = deleted.getNext();
+      System.out.println(temp.getNext());
+      piggyback.setNext(null);
+      deleted = null;
+      shiftTheRest(temp);
+      //      while (temp!=null) {
+      //        System.out.println("I like to ...");
+      //        if (!temp.toBeRemoved) {
+      //          System.out.println("MOVE IT!" + temp);
+      //          movers.add(temp);//every thing above piggyback is in the movers arraylist
+      //        }
+      //        temp = temp.getNext();
+      //      }
     }
   } 
+
+  void shiftTheRest(Block first) {
+    while (first!=null) {
+      System.out.println("I like to ...");
+      if (!first.toBeRemoved) {
+        Block temp = first;
+        temp.setNext(null);
+        System.out.println("MOVE IT!" + temp);
+        movers.add(temp);
+        temp = null;
+      }
+      first = first.getNext();
+    }
+  }
 
 
   Block getLeft() {
