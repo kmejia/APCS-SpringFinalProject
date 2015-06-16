@@ -164,7 +164,14 @@ class Block {
       //  Block temp2 = this;
       //      while ((temp2!=null) && (temp2.getNext().fillColor == c)){
       /////  fillColor = #FF03FB;
+      
+//      removeSingle((int)xCor/50 - 1, (int) yCor, fillColor);
+      
+     
       removeSingle((int)xCor/50, (int) yCor, fillColor);
+      
+    //  removeSingle((int)xCor/50 +1, (int) yCor, fillColor);
+
       //      temp2 = temp2.getNext();
       //      }//at this point ever next should be in moving
       //      while (temp2!=null){
@@ -185,10 +192,14 @@ class Block {
     //        }
     //      }
     //    }
+   // if((index==-1)||(index==20)) {return ;}
     Block deleted = bl[index];
     Block piggyback;
     for (piggyback = deleted; (int)deleted.yCor!= y; deleted =deleted.getNext()) {
       piggyback = deleted;
+      if (deleted==null) {
+        return;
+        }
     }//at this point piggyback.getNext() ==deleted
     //while(deleted!=null) {
 if (deleted.getNext() ==null) {//case where the tippy top block is deleted
