@@ -76,6 +76,7 @@ void draw() {
     update();
     drawBlocks();
     moveBlocks();
+    update();
     drawOutline();
     if (frameCount% (/*120 - difficulty*/ 45)==0) {
       movers.add(new Block(rnd.nextInt(20) * 50, 0, colors[rnd.nextInt(colors.length)]));
@@ -168,6 +169,7 @@ void mousePressed() {
   if ((current!=null )&&(current.fillColor!=#FFFFFF)) {
     current.removeBlock(current.hasFriends());
     score++;
+    update();
     System.out.println("score up!!");
   }
 }
