@@ -12,7 +12,7 @@ ArrayList<Block> movers = new ArrayList<Block>();
 Block[] bl = new Block[20];//the array of linked lists at the bottom
 int score =0;
 int[] colors = {
-  #FF0000, #00FF00, #0000FF, #F6FF00
+  #FF0000, #00FF00//, #0000FF, #F6FF00
 };
 int difficulty = 0;
 //Block test = new Block((0*50) + 25, 427, #FFFFFF);
@@ -76,8 +76,9 @@ void draw() {
     update();
     drawBlocks();
     moveBlocks();
+    update();
     drawOutline();
-    if (frameCount% (/*120 - difficulty*/ 45)==0) {
+    if (frameCount% (/*120 - difficulty*/ 60)==0) {
       movers.add(new Block(rnd.nextInt(20) * 50, 0, colors[rnd.nextInt(colors.length)]));
     }
     //    for(int i = 0;i<bl.length;i++){
@@ -161,14 +162,18 @@ Block isBlock() {
 void mousePressed() {
   Block current = isBlock();
   if (current != null) {   
-    System.out.println("current is "+current + " and nextBlock is " + current.getNext() + " and belowBlock is " + current.getBelow());
+    System.out.println("current is "+current + " color is " + current.fillColor + " and nextBlock is " + current.getNext() + " and belowBlock is " + current.getBelow());
   } else {
     System.out.println("@Ghost");
   }
   if ((current!=null )&&(current.fillColor!=#FFFFFF)) {
-    current.removeBlock(current.hasFriends());
+    if (current.hasFriends()){
+      current.toBeRemoved = true;
+      current.removeBlock(current.hasFriends());
+    }
     score++;
-    System.out.println("score up!!");
+    update();
+    //System.out.println("score up!!");
   }
 }
 

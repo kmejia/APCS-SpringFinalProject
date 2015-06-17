@@ -104,13 +104,13 @@ class Block {
       return false;
     }
     if ((temp.fillColor ==c) && ((int)temp.yCor!=y)) {
-      //System.out.println("A"+temp.yCor + c+this.yCor);      
+      //System.out.println("A"+temp.yCor + c+this.yCor);             
+      temp.toBeRemoved = true;
       return true;
     }
     while ( (temp!= null)&&((int)temp.yCor> y -50 )) {
       if ( (temp.fillColor ==c) && (temp.yCor!=y)) {//we dont count the block itself
-        // System.out.println("B");      
-
+        // System.out.println("B"); 
         return true;
       } 
       temp = temp.getNext();
@@ -121,7 +121,7 @@ class Block {
       return false;
     }
     if (temp.fillColor ==c) {
-      // System.out.println("C");      
+      // System.out.println("C");          
       temp.toBeRemoved = true;
       return true;
     }
@@ -167,12 +167,12 @@ class Block {
       //      while ((temp2!=null) && (temp2.getNext().fillColor == c)){
       /////  fillColor = #FF03FB;
 
-//      if ((int)xCor/50-1 >= 0){
-//        removeSingle((int)xCor/50 - 1, (int) yCor, fillColor);
-//      }
-//      if ((int)xCor/50-1 <= 19){
-//        removeSingle((int)xCor/50 +1, (int) yCor, fillColor);
-//      } 
+      //      if ((int)xCor/50-1 >= 0){
+      //        removeSingle((int)xCor/50 - 1, (int) yCor, fillColor);
+      //      }
+      //      if ((int)xCor/50-1 <= 19){
+      //        removeSingle((int)xCor/50 +1, (int) yCor, fillColor);
+      //      } 
       removeSingle((int)xCor/50, (int) yCor, fillColor);
 
       //  
@@ -196,13 +196,22 @@ class Block {
       System.out.println("#Stupid");
       piggyback.setNext(null);
       deleted = null;
+      killTheLower(piggyback);
+      //      while (piggyback!=null && piggyback.toBeRemoved) {
+      //        piggyback.getBelow().setNext(null);
+      //        piggyback = piggyback.getBelow();
+      //        update();
+      //      }
     } else {
-      System.out.println("#MoreStupid");
-      Block temp = deleted.getNext();
-      System.out.println(temp.getNext());
-      piggyback.setNext(null);
-      deleted = null;
-      shiftTheRest(temp);
+      killTargeted(deleted);
+      //      System.out.println("#MoreStupid");
+      //      Block temp = deleted.getNext();
+      //      System.out.println(temp.getNext());
+      //      piggyback.setNext(null);
+      //      temp.setBelow(piggyback);
+      //      deleted = null;
+      //      shiftTheRest(temp);
+      //      killTheLower(piggyback);
       //      while (temp!=null) {
       //        System.out.println("I like to ...");
       //        if (!temp.toBeRemoved) {
@@ -215,19 +224,59 @@ class Block {
   } 
 
   void shiftTheRest(Block first) {
-    while (first!=null) {
-      System.out.println("I like to ...");
+    int emergency = 10;
+    System.out.println("CHECK THIS OUT " + first);
+    while (first!=null && emergency>0) {
+      System.out.println(emergency);
+      emergency--;
+      Block temp = first;
+      Block next;
       if (!first.toBeRemoved) {
-        Block temp = first;
+        System.out.println("REALLY THO?");
+        next = first.getNext();
         temp.setNext(null);
-        System.out.println("MOVE IT!" + temp);
         movers.add(temp);
-        temp = null;
+        if (first != null) {
+          System.out.println(temp + " " + temp.fillColor + " " + first + " " + first.fillColor);
+        }
+      } else {
+        System.out.println("iStupid");
+        if (temp.getNext()!=null && temp.getNext().getNext()!=null) {
+          next = temp.getNext().getNext();
+        } else {
+          next = null;
+        }
       }
-      first = first.getNext();
+      first = next;
+      update();
     }
   }
 
+  void killTheLower(Block piggyback) {
+    while (piggyback!=null && piggyback.toBeRemoved) {
+      piggyback = piggyback.getBelow();      
+      piggyback.setNext(null);
+      update();
+    }
+    piggyback.setNext(null);
+  }
+
+  void killTargeted(Block first) {
+    Block start = bl[(int)first.xCor/50];
+    Block head = start.getNext();
+    while (head.getNext() != null) {      
+      if (head.toBeRemoved) {
+        System.out.println("WHY?");
+        Block follow = head.getBelow();
+        follow.setNext(null);
+        if (head.getNext()!= null) {
+          movers.add(head.getNext());
+        } 
+        update();
+      }
+      head = head.getNext();
+    }
+  }
 
   Block getLeft() {
     return left;
