@@ -30,8 +30,6 @@ void setup() {
     //d.drawMe();
     ///////////////////    //bl[i].setNext(new Block(50 *i, (int)(bl[i].yCor) - 50, #FFFFFF));
     //bl[i].getNext().drawMe();
-    // System.out.println(bl[i].getNext());
-    //System.out.println((int)(bl[i].yCor) - 100);
   }
   /*thiss part*/
 
@@ -65,7 +63,6 @@ void drawOutline() {
 
 
 void draw() {
-  //System.out.println(mouseY);
   if (!lost()) {
     background(0);
     //    test.drawMe();
@@ -84,7 +81,6 @@ void draw() {
     //    for(int i = 0;i<bl.length;i++){
     //      Block  b = bl[i] ;
     //      while (b!=null){
-    //        System.out.println(b);
     //        b = b.getNext();
     //      }
     //    }
@@ -103,7 +99,7 @@ void update() {
     }
     //at this point list is the last node
     //now i want to check if it's right below temp, which is moving
-    if ((int)list.yCor - 50 ==(int)temp.yCor) {
+    if ((int)list.yCor - 50 <=(int)temp.yCor) {
       list.setNext(temp);
       temp.setBelow(list);
       movers.remove(temp);
@@ -167,17 +163,12 @@ void mousePressed() {
     System.out.println("@Ghost");
   }
   if ((current!=null )&&(current.fillColor!=#FFFFFF)) {
-    if (current.hasFriends()){
+    if (current.hasFriends()) {
       current.toBeRemoved = true;
       current.removeBlock(current.hasFriends());
     }
-    score++;
+    //score++;
     update();
-<<<<<<< HEAD
-    //System.out.println("score up!!");
-=======
-    System.out.println("score up!!");
->>>>>>> 007e615cff316cb7490fda981ca3e9c9048078c5
   }
 }
 
