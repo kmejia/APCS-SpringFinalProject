@@ -173,7 +173,11 @@ void mousePressed() {
     }
     score++;
     update();
+<<<<<<< HEAD
     //System.out.println("score up!!");
+=======
+    System.out.println("score up!!");
+>>>>>>> 007e615cff316cb7490fda981ca3e9c9048078c5
   }
 }
 
