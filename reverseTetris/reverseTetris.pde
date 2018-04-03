@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-Random rnd = new Random();
+Random rnd = new Random(); S
 int numCellsRow = 500;
 int numCellsCol = 1000;
 int cellSize = 50;

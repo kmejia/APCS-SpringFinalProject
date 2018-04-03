@@ -1,5 +1,5 @@
 class Cell{
-  int col, row;
+  int col,  Srow;
   
   Cell(int a, int b){
     col = a;

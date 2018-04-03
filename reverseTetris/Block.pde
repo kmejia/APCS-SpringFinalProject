@@ -1,7 +1,7 @@
 import java.util.*;
 
 class Block {
-  Random rnd = new Random();
+  Random rnd = new Random(); 
   float xCor, yCor;
   float speed = 5;
   int fillColor;
